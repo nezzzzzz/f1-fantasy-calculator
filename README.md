@@ -1,2 +1,3 @@
 # f1-fantasy-calculator
-A calculator tool for F1 Fantasy online game
+
+A driver and constructor setup calculator for F1 Fantasy

@@ -1,0 +1,157 @@
+{
+    "constructors": [
+        {
+            "name": "Mercedes",
+            "points": 0,
+            "price": 34500000
+        },
+        {
+            "name": "Red Bull",
+            "points": 0
+            ,
+            "price": 32500000
+        },
+        {
+            "name": "Ferrari",
+            "points": 0,
+            "price": 25000000
+        },
+        {
+            "name": "McLaren",
+            "points": 0,
+            "price": 18500000
+        },
+        {
+            "name": "Aston Martin",
+            "points": 0,
+            "price": 11500000
+        },
+        {
+            "name": "Alpine",
+            "points": 0,
+            "price": 14000000
+        },
+        {
+            "name": "AlphaTauri",
+            "points": 0,
+            "price": 10500000
+        },
+        {
+            "name": "Alfa Romeo",
+            "points": 0,
+            "price": 8000000
+        },
+        {
+            "name": "Williams",
+            "points": 0,
+            "price": 7000000
+        },
+        {
+            "name": "Haas",
+            "points": 0,
+            "price": 6000000
+        }
+    ],
+    "drivers": [
+        {
+            "name": "L. Hamilton",
+            "points": 0,
+            "price": 31000000
+        },
+        {
+            "name": "M. Verstappen",
+            "points": 0,
+            "price": 30500000
+        },
+        {
+            "name": "G. Russell",
+            "points": 0,
+            "price": 24000000
+        },
+        {
+            "name": "C. Leclerc",
+            "points": 0,
+            "price": 18000000
+        },
+        {
+            "name": "S. Perez",
+            "points": 0,
+            "price": 17500000
+        },
+        {
+            "name": "C. Sainz",
+            "points": 0,
+            "price": 17000000
+        },
+        {
+            "name": "L. Norris",
+            "points": 0,
+            "price": 16000000
+        },
+        {
+            "name": "D. Ricciardo",
+            "points": 0,
+            "price": 14500000
+        },
+        {
+            "name": "P. Gasly",
+            "points": 0,
+            "price": 13500000
+        },
+        {
+            "name": "F. Alsonso",
+            "points": 0,
+            "price": 12500000
+        },
+        {
+            "name": "E. Ocon",
+            "points": 0,
+            "price": 12000000
+        },
+        {
+            "name": "S. Vettel",
+            "points": 0,
+            "price": 11500000
+        },
+        {
+            "name": "L. Stroll",
+            "points": 0,
+            "price": 9500000
+        },
+        {
+            "name": "V. Bottas",
+            "points": 0,
+            "price": 9000000
+        },
+        {
+            "name": "Y. Tsunoda",
+            "points": 0,
+            "price": 8500000
+        },
+        {
+            "name": "G. Zhou",
+            "points": 0,
+            "price": 8000000
+        },
+        {
+            "name": "A. Albon",
+            "points": 0,
+            "price": 7500000
+        },
+        {
+            "name": "N. Latifi",
+            "points": 0,
+            "price": 7000000
+        },
+        {
+            "name": "M. Schumacher",
+            "points": 0,
+            "price": 6500000
+        },
+        {
+            "name": "TBC. TBC",
+            "points": 0,
+            "price": 5500000
+        }
+    ]
+}
