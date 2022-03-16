@@ -33,40 +33,36 @@ type Setup struct {
 }
 
 type Requirements struct {
-	Budget int
-	Points int
-	Price  int
+	MaximumPrice  int
+	MinimumPrice  int
+	MinimumPoints int
 }
 
 func setupIsGood(setup *Setup, requirements *Requirements) bool {
-	for driverIndex := 0; driverIndex < len(setup.Drivers); driverIndex++ {
-		setup.Points += setup.Drivers[driverIndex].Points
-		setup.Price += setup.Drivers[driverIndex].Price
+	for driver := 0; driver < len(setup.Drivers); driver++ {
+		setup.Points += setup.Drivers[driver].Points
+		setup.Price += setup.Drivers[driver].Price
 	}
 
-	if setup.Price > requirements.Budget || setup.Price < requirements.Price || setup.Points < requirements.Points {
-		return false
-	} else {
-		return true
-	}
+	return setup.Points >= requirements.MinimumPoints && setup.Price >= requirements.MinimumPrice && setup.Price <= requirements.MaximumPrice
 }
 
-func finalizeSetups(budget int, drivers *[]Driver, setupTemplate Setup, indexOfNextNewDriver int,
+func createDriverSetups(budgetLeft int, drivers *[]Driver, setupTemplate Setup, indexOfNextUsableDriver int,
 	requirements *Requirements, setups *[]Setup) *[]Setup {
 
-	for driverCandidateIndex := indexOfNextNewDriver; driverCandidateIndex < len(*drivers); driverCandidateIndex++ {
+	for driverCandidateIndex := indexOfNextUsableDriver; driverCandidateIndex < len(*drivers); driverCandidateIndex++ {
 		setupInProgress := setupTemplate
 
-		if budget-(*drivers)[driverCandidateIndex].Points >= 0 {
+		if budgetLeft-(*drivers)[driverCandidateIndex].Price >= 0 {
 			setupInProgress.Drivers = append(setupInProgress.Drivers, (*drivers)[driverCandidateIndex])
 
-			remainingBudget := budget - (*drivers)[driverCandidateIndex].Points
+			remainingBudget := budgetLeft - (*drivers)[driverCandidateIndex].Price
 
 			if remainingBudget > 0 {
-				finalizeSetups(remainingBudget, drivers, setupInProgress, driverCandidateIndex+1, requirements, setups)
+				createDriverSetups(remainingBudget, drivers, setupInProgress, driverCandidateIndex+1, requirements, setups)
 			}
 
-			// Must have exactly 5 drivers
+			// Must have exactly 5 drivers.
 			if len(setupInProgress.Drivers) != 5 {
 				continue
 			} else {
@@ -88,7 +84,7 @@ func createSetups(data *Data, requirements *Requirements) []Setup {
 		setupTemplate := Setup{
 			Constructor: constructor, Drivers: []Driver{}, Points: constructor.Points, Price: constructor.Price}
 
-		finalizeSetups(requirements.Budget, &data.Drivers, setupTemplate, 0, requirements, &setups)
+		createDriverSetups(requirements.MaximumPrice-constructor.Price, &data.Drivers, setupTemplate, 0, requirements, &setups)
 	}
 
 	return setups
@@ -134,17 +130,15 @@ func main() {
 
 	var requirements Requirements
 
-	fmt.Println("What is your budget? (if you own 10 million money, answer 1000000)")
-	fmt.Scanln(&requirements.Budget)
-	fmt.Print("Ok, " + strconv.Itoa(requirements.Budget) + " coins of money.\n")
-
-	fmt.Println("What's your minimum allowed price? ")
-	fmt.Scanln(&requirements.Price)
-	fmt.Print("Ok, price will be over " + strconv.Itoa(requirements.Price) + ".\n")
+	fmt.Println("What is your maximum budget?")
+	fmt.Scanln(&requirements.MaximumPrice)
+	fmt.Println("What is your minimum allowed price?")
+	fmt.Scanln(&requirements.MinimumPrice)
+	fmt.Print("Ok, price will be between " + strconv.Itoa(requirements.MinimumPrice) + " - " + strconv.Itoa(requirements.MaximumPrice) + " coins of money.\n")
 
 	fmt.Println("What about your minimum allowed points? ")
-	fmt.Scanln(&requirements.Points)
-	fmt.Print("And points will be over " + strconv.Itoa(requirements.Points) + ".\n")
+	fmt.Scanln(&requirements.MinimumPoints)
+	fmt.Print("And points will be at least " + strconv.Itoa(requirements.MinimumPoints) + ".\n")
 
 	fmt.Println("Starting to create setups.")
 
